@@ -6,13 +6,18 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 
 ## Table of Contents
 
-- [Requirements](#requirements)
-- [Setup](#setup)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Future Work](#future-work)
-- [Contributing](#contributing)
-- [License](#license)
+- [Medical Imaging Coding Assessment](#medical-imaging-coding-assessment)
+  - [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+    - [Web Interface](#web-interface)
+    - [Backend](#backend)
+    - [Docker](#docker)
+    - [Code Quality and Testing](#code-quality-and-testing)
+  - [Setup](#setup)
+    - [Prerequisites](#prerequisites)
+    - [Instructions](#instructions)
+    - [Future Work](#future-work)
+    - [Not Implemented But Thought Of](#not-implemented-but-thought-of)
 
 ### Web Interface
 
@@ -49,5 +54,21 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 1. Clone this repository to your local machine.
 
    ```bash
-   git clone .git
+   git clone git@github.com:xbankov/dicom_webapp.git
+
+   cd dicom_webapp
+
+   docker-compose up --build
    ```
+
+### Future Work
+
+- implement dynamic thresholding techniques to improve accuracy for different types o DICOM images
+- advanced dicom processing using neural netword (nnunet, other semantic segmantation networks, image registration, etc ...)
+- user-friendly DICOM viewer for enhanced user interaction ( borrowing from 3Dslicer)
+- Implementing anomaly detection, is a potential future improvement.
+
+### Not Implemented But Thought Of
+- Test for validity of dicom metadata AND data, like intensities in pixel_array check or spacing check.
+- test for the not .dcm files, e.g. (.txt)
+-  

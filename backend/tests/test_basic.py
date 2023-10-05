@@ -12,6 +12,3 @@ valid_dicom = dcmread("backend/tests/1-101.dcm")
 
 def test_calculate_volume():
     assert calculate_volume(valid_dicom, threshold=0.5) == 143280.03
-
-# Possible other checks
-# Check if 
