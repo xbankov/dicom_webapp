@@ -4,7 +4,12 @@ from pydicom import dcmread
 import numpy as np
 from fastapi.responses import JSONResponse
 from typing import Optional
+from backend.settings import Settings
 
+from src.volume_computation import calculate_volume
+
+
+settings = Settings()
 app = FastAPI()
 
 
@@ -20,44 +25,11 @@ app.add_middleware(
 )
 
 
-def calculate_volume(dicom_file, threshold):
-    # Extract pixel data as a NumPy array and convert to float
-    pixel_data = dicom_file.pixel_array.astype(float)
-
-    # Extract physical spacing information (in millimeters)
-    spacing_x, spacing_y = float(dicom_file.PixelSpacing[0]), float(
-        dicom_file.PixelSpacing[1]
-    )
-    slice_thickness = (
-        float(dicom_file.SliceThickness)
-        if hasattr(dicom_file, "SliceThickness")
-        else 1.0
-    )
-
-    # Calculate the volume scaling factor based on pixel size and slice thickness
-    voxel_volume = spacing_x * spacing_y * slice_thickness
-
-    # Normalize pixel data to [0, 1] range
-    min_value = np.min(pixel_data)
-    max_value = np.max(pixel_data)
-    normalized_pixel_data = (pixel_data - min_value) / (max_value - min_value)
-
-    # Define the threshold (e.g., 0.5)
-    threshold = 0.5
-
-    # Threshold the normalized pixel data
-    thresholded_pixels = np.where(normalized_pixel_data > threshold, 1, 0)
-
-    # Calculate the volume (in mm^3) based on thresholded voxel counts
-    volume_mm3 = np.sum(thresholded_pixels) * voxel_volume
-    return round(volume_mm3, 2)
-
-
 @app.post("/upload/")
-async def upload_and_process_dicom(file: UploadFile, threshold: Optional[float] = 0.5):
+async def upload_and_process_dicom(file: UploadFile):
     try:
         dicom_file = dcmread(file.file)
-        volume = calculate_volume(dicom_file, threshold)
+        volume = calculate_volume(dicom_file, settings.threshold)
         return JSONResponse(content={"volume_mm3": volume})
     except Exception as e:
         return JSONResponse(content={"error": str(e)})
