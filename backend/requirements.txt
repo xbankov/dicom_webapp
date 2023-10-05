@@ -1,0 +1,5 @@
+fastapi[all]==0.103.2
+pydicom==2.4.3
+numpy==1.26.0
+uvicorn==0.23.2
+python-multipart==0.0.6
