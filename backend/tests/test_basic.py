@@ -6,7 +6,6 @@ import numpy as np
 from pydicom import dcmread
 from src.volume_computation import calculate_volume
 
-
 valid_dicom = dcmread("backend/tests/1-101.dcm")
 
 

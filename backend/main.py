@@ -1,10 +1,8 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydicom import dcmread
-import numpy as np
 from fastapi.responses import JSONResponse
-from typing import Optional
-from backend.settings import Settings
+from settings import Settings
 
 from src.volume_computation import calculate_volume
 
@@ -32,6 +30,8 @@ async def upload_and_process_dicom(file: UploadFile):
         volume = calculate_volume(dicom_file, settings.threshold)
         return JSONResponse(content={"volume_mm3": volume})
     except Exception as e:
+        # Future work: Specify Exception and specific errors: validity, missing metadata, correct file format etc ...
+        # Specify message for each error
         return JSONResponse(content={"error": str(e)})
 
 

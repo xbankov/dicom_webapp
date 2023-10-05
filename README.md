@@ -40,8 +40,9 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 
 ### Code Quality and Testing
 
-- The code is well-documented (by choosing variables names carefully) and partially tested.
+- The code is well-documented (by choosing variables names carefully) and partially tested (With additional suggestions).
 - Consideration has been given to various edge cases that might occur when processing DICOM files.
+- [Not Implemented But Thought Of](#not-implemented-but-thought-of)
 
 ## Setup
 
@@ -63,12 +64,14 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 
 ### Future Work
 
-- implement dynamic thresholding techniques to improve accuracy for different types o DICOM images
+- implement dynamic thresholding techniques to improve accuracy for different types of DICOM images
 - advanced dicom processing using neural netword (nnunet, other semantic segmantation networks, image registration, etc ...)
 - user-friendly DICOM viewer for enhanced user interaction ( borrowing from 3Dslicer)
-- Implementing anomaly detection, is a potential future improvement.
+- Implementing anomaly detection, is another potential future improvement.
+- Removing CT table (part of my master thesis at DKFZ)
 
 ### Not Implemented But Thought Of
-- Test for validity of dicom metadata AND data, like intensities in pixel_array check or spacing check.
-- test for the not .dcm files, e.g. (.txt)
--  
+
+- Tests for validity of dicom metadata AND data, like intensities in pixel_array check or spacing check.
+- tests for the not .dcm files, e.g. (.txt)
+- tests for the actual content of the CT scan

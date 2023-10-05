@@ -5,6 +5,7 @@
     <div>
       <p>Number of pixels above threshold: {{ this.volume }}</p>
     </div>
+    <p v-if="errorMessage">{{ errorMessage }}</p>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
   data() {
     return {
       volume: 0,
+      errorMessage: "",
     };
   },
 
@@ -34,10 +36,18 @@ export default {
         });
 
         const data = await response.json();
-
+        if (typeof data.error !== "undefined") {
+          this.errorMessage =
+            "Error uploading and processing DICOM: " + data.error;
+          console.error(
+            "Backedn error uploading and processing DICOM:",
+            data.error
+          );
+        }
         this.volume = data.volume_mm3;
         console.log("Received Volume:", data.volume_mm3);
       } catch (error) {
+        this.errorMessage = "Error uploading and processing DICOM: " + error;
         console.error("Error uploading and processing DICOM:", error);
       }
     },
