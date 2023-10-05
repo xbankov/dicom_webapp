@@ -70,9 +70,11 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 - Implementing anomaly detection, is another potential future improvement.
 - Removing CT table (part of my master thesis at DKFZ)
 - STYLES - a small touch-up would be beneficial, mostly for the easy of use
+- Use PHYSICAL SPACING-aware medical processing library - like SITK
 
 ### Not Implemented But Thought Of
 
-- Tests for validity of dicom metadata AND data, like intensities in pixel_array check or spacing check.
+- tests for validity of dicom metadata AND data, like intensities in pixel_array check or spacing check.
 - tests for the not .dcm files, e.g. (.txt)
 - tests for the actual content of the CT scan
+-
