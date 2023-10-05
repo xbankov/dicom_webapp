@@ -69,6 +69,7 @@ This repository contains a web-based platform for processing DICOM (Digital Imag
 - user-friendly DICOM viewer for enhanced user interaction ( borrowing from 3Dslicer)
 - Implementing anomaly detection, is another potential future improvement.
 - Removing CT table (part of my master thesis at DKFZ)
+- STYLES - a small touch-up would be beneficial, mostly for the easy of use
 
 ### Not Implemented But Thought Of
 
